@@ -4,17 +4,20 @@ import com.tool.scrapper.service.ScraperServiceImpl;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 import javax.net.ssl.*;
 import java.security.cert.CertificateException;
 
+@Service
 public class RecurringNotifyService {
 
     @Autowired
     ScraperServiceImpl scraperService;
 
-    @Scheduled(cron = "0 12 * * ?")
+    @Scheduled(cron = "0 30 1 * * ?")
     public void cronJobSch() throws Exception {
+        //Cron for IST 6:30 AM : 0 12 * * ?
         System.out.println("Trigger scheduler triggered");
          OkHttpClient client = getUnsafeOkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
