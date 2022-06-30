@@ -5,6 +5,7 @@ import com.tool.scrapper.model.ResponseDTO;
 import com.tool.scrapper.service.ScraperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
@@ -20,12 +21,12 @@ public class ScraperController {
     }
 
     @GetMapping(path = "/scrape")
-    public Set<PowerDTO> getVehicleByModel12() {
-        return  scraperService.extractPowerData("");
+    public Set<PowerDTO> getVehicleByModel12(@RequestParam(name = "area",required = false) String outageArea) {
+        return  scraperService.extractPowerData("", outageArea);
     }
 
     @GetMapping(path = "/power")
-    public Set<PowerDTO> getVehicleByModel1() {
-        return  scraperService.extractPowerDataFromTsspdcl("");
+    public Set<PowerDTO> getVehicleByModel1(@RequestParam(name = "area",required = false) String outageArea) {
+        return  scraperService.extractPowerDataFromTsspdcl("", outageArea);
     }
 }
