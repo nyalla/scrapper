@@ -147,7 +147,7 @@ public class ScraperServiceImpl {
         //https://api.telegram.org/bot5576678061:AAH_bsRWn_EFqvUi8ZM1GrM-EJ0QtaNdIuE/sendMessage?chat_id=-1001540845770&text=by_bot
 
         String alertData = responseDTOS.stream().filter(i -> i.getFeederName().contains(outageArea == null && outageArea.isEmpty() ? "TOURIST" : outageArea)).map(i -> i.getFeederName() + ": Power outage from " + i.getFrom() + " to " + i.getTo() + " due to " + i.getType()).collect(Collectors.joining(","));
-        if (alertData == null && alertData.isEmpty())
+        if (alertData == null || alertData.isEmpty())
             alertData = "No outage in given Area";
         OkHttpClient client = getUnsafeOkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
