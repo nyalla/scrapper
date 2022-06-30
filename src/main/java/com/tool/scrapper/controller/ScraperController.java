@@ -1,5 +1,6 @@
 package com.tool.scrapper.controller;
 
+import com.tool.scrapper.model.PowerDTO;
 import com.tool.scrapper.model.ResponseDTO;
 import com.tool.scrapper.service.ScraperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,18 @@ public class ScraperController {
     @Autowired
     ScraperServiceImpl scraperService;
 
-    @GetMapping(path = "/scrape")
+    @GetMapping(path = "/scrape1")
     public Set<ResponseDTO> getVehicleByModel() {
         return  scraperService.extractTable("");
+    }
+
+    @GetMapping(path = "/scrape")
+    public Set<PowerDTO> getVehicleByModel12() {
+        return  scraperService.extractPowerData("");
+    }
+
+    @GetMapping(path = "/power")
+    public Set<PowerDTO> getVehicleByModel1() {
+        return  scraperService.extractPowerDataFromTsspdcl("");
     }
 }
